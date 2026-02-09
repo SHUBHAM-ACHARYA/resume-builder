@@ -1,0 +1,54 @@
+.input-group {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  width: 40%;
+}
+/* LinkedIn / Notion compact height */
+// ::ng-deep .mat-mdc-text-field-wrapper {
+//   height: 35px !important;
+// }
+
+// ::ng-deep .mat-mdc-form-field-flex {
+//   height: 101% !important;
+//   place-items: anchor-center !important;
+// }
+
+.custom-input {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+
+  input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #cfcfcf;
+    padding: 8px 2px;
+    font-size: 14px;
+    outline: none;
+    background: transparent;
+
+    &:focus {
+      border-bottom-color: transparent;
+    }
+  }
+
+  /* Animated focus line */
+  .focus-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #ff7a00; /* Orange */
+    transition: width 0.35s ease;
+  }
+
+  input:focus + .focus-border {
+    width: 100%;
+  }
+}

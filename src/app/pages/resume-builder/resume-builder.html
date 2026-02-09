@@ -1,0 +1,35 @@
+<div class="mat-center-container">
+  <div class="resume-cards-container">
+    <!-- Loader overlay -->
+    <div class="overlay" *ngIf="isLoading">
+      <mat-spinner diameter="60" color="accent"></mat-spinner>
+    </div>
+
+    <div class="form-cotnainer">
+      <!-- Page content -->
+      @if (pageCount === 0) {
+      <app-personal-info class="input-container"></app-personal-info>
+      } @else if (pageCount === 1) {
+      <!-- future component -->
+      <!-- <app-summary></app-summary> -->
+      }
+
+      <!-- <div class="navigation-buttons">
+        <button
+          mat-raised-button
+          (click)="prevPage()"
+          [disabled]="pageCount === 0"
+          class="btn-prev"
+        >
+          <b>Previous</b>
+        </button>
+
+        <button mat-raised-button (click)="nextPage()" class="btn-next">
+          <b>Next</b>
+        </button>
+      </div> -->
+    </div>
+
+    <!-- Navigation buttons -->
+  </div>
+</div>

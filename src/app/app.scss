@@ -1,0 +1,67 @@
+app-resume-builder {
+  width: 100%;
+  display: block;
+}
+
+::ng-deep .location-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+::ng-deep .flex-grow {
+  flex: 1 1 200px;
+}
+
+::ng-deep .input-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+::ng-deep .section-title {
+  margin-bottom: 16px;
+}
+
+::ng-deep .input-fields {
+  display: grid;
+  gap: 16px;
+}
+
+::ng-deep .location-grid {
+  display: flex;
+  gap: 16px;
+}
+
+::ng-deep mat-form-field {
+//   width: 50%;
+}
+
+::ng-deep .ios-select-panel {
+  backdrop-filter: blur(18px);
+  animation: ios-slide 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+::ng-deep .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.555);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+@keyframes ios-slide {
+  from {
+    transform: translateY(10px) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}

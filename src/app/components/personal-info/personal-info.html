@@ -1,0 +1,112 @@
+<ng-container [formGroup]="formGroup">
+  <!-- Section Title -->
+  <h2 class="section-title"><b>Personal Info</b></h2>
+
+  <div class="input-fields">
+    <!-- Full Name -->
+    <div class="custom-input">
+      <input type="text" placeholder="Full Name" />
+      <span class="focus-border"></span>
+    </div>
+
+    <div class="input-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Full Name</mat-label>
+        <input matInput placeholder="Shubham J. Acharya" formControlName="fullName" />
+        <mat-error *ngIf="formGroup.get('fullName')?.hasError('required')">
+          Full Name is required
+        </mat-error>
+        <mat-error *ngIf="formGroup.get('fullName')?.hasError('minlength')">
+          Full Name must be at least 3 characters
+        </mat-error>
+        <mat-error *ngIf="formGroup.get('fullName')?.hasError('maxlength')">
+          Full Name cannot exceed 50 characters
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="test@test.gmail.com" formControlName="email" />
+        <mat-error *ngIf="formGroup.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="formGroup.get('email')?.hasError('email')">
+          Enter a valid email address
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- Phone -->
+    <mat-form-field appearance="outline">
+      <mat-label>Phone</mat-label>
+      <input matInput placeholder="1234567890" formControlName="phone" />
+      <mat-error *ngIf="formGroup.get('phone')?.hasError('required')">
+        Phone number is required
+      </mat-error>
+      <mat-error *ngIf="formGroup.get('phone')?.hasError('pattern')">
+        Phone number must be exactly 10 digits
+      </mat-error>
+    </mat-form-field>
+
+    <!-- City -->
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <input matInput placeholder="Bhavnagar" formControlName="city" />
+      <mat-error *ngIf="formGroup.get('city')?.hasError('required')"> City is required </mat-error>
+      <mat-error *ngIf="formGroup.get('city')?.hasError('maxlength')">
+        City cannot exceed 50 characters
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Country & State -->
+    <div class="location-grid">
+      <mat-form-field appearance="outline" style="flex: 1">
+        <mat-label>Country</mat-label>
+        <mat-select panelClass="ios-select-panel" formControlName="country">
+          <mat-option *ngFor="let c of countries" [value]="c.iso2">
+            {{ c.flag }} {{ c.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.get('country')?.hasError('required')">
+          Country is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="flex: 1">
+        <mat-label>State</mat-label>
+        <mat-select formControlName="state">
+          <mat-option *ngFor="let s of states" [value]="s.code">
+            {{ s.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.get('state')?.hasError('required')">
+          State is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- LinkedIn -->
+    <mat-form-field appearance="outline">
+      <mat-label>LinkedIn</mat-label>
+      <input matInput placeholder="LinkedIn Username" formControlName="linkedin" />
+      <mat-error *ngIf="formGroup.get('linkedin')?.hasError('pattern')">
+        Enter a valid LinkedIn URL
+      </mat-error>
+    </mat-form-field>
+
+    <!-- GitHub -->
+    <mat-form-field appearance="outline">
+      <mat-label>GitHub</mat-label>
+      <input matInput placeholder="GitHub Username" formControlName="github" />
+      <mat-error *ngIf="formGroup.get('github')?.hasError('pattern')">
+        Enter a valid GitHub URL
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Professional Summary -->
+    <mat-form-field appearance="outline">
+      <mat-label>Professional Summary</mat-label>
+      <textarea matInput formControlName="summary" rows="5"></textarea>
+    </mat-form-field>
+  </div>
+</ng-container>
