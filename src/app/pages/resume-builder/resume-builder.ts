@@ -1,30 +1,26 @@
 import { Component } from '@angular/core';
-import { ChangeDetectionStrategy } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { PersonalInfo } from '../../components/personal-info/personal-info';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
+import { ResumeService } from '../../services/resume.service';
+import { Skills } from "../../components/skills/skills";
 @Component({
   selector: 'app-resume-builder',
-  imports: [MatCardModule, MatButtonModule, PersonalInfo, MatProgressSpinnerModule, CommonModule],
+  imports: [PersonalInfo, CommonModule, Skills],
   // changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './resume-builder.html',
   styleUrl: './resume-builder.scss',
 })
 export class ResumeBuilder {
-  pageCount = 0;
+  constructor(private resumeService: ResumeService) { }
+  formCount = 1
   isLoading = false;
-  nextPage() {
+
+  getCurrentForm(count: number) {
     this.isLoading = true;
-    this.pageCount = this.pageCount + 1;
     setTimeout(() => {
       this.isLoading = false;
-    }, 200);
+    }, 500)
+    this.formCount = Number(count)
   }
-  prevPage() {
-    if (this.pageCount > 0) {
-      this.pageCount = this.pageCount - 1;
-    }
-  }
+
 }

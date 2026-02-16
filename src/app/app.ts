@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, signal } from '@angular/core';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 import { RouterOutlet } from '@angular/router';
 import { ResumeBuilder } from './pages/resume-builder/resume-builder';
 
 @Component({
   selector: 'app-root',
-  imports: [MatSlideToggleModule, ResumeBuilder],
+  imports: [ResumeBuilder],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

@@ -1,1 +1,48 @@
-<p>skills works!</p>
+<div class="resume-card p-5">
+
+    <h3 class="section-title mb-5">Add Skills</h3>
+
+    <form [formGroup]="formGroup">
+        <div class="row g-4">
+
+            <!-- Full Name -->
+            <div class="col-md-5">
+                <div class="input-group-modern">
+                    <input type="text" class="modern-input" placeholder=" " formControlName="skillName">
+                    <label>Skill Name</label>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-5">
+                <div class="input-group-modern">
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check modern-input" name="btnradio" id="btnradio1"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
+
+                        <input type="radio" class="btn-check modern-input" name="btnradio" id="btnradio2"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
+
+                        <input type="radio" class="btn-check modern-input" name="btnradio" id="btnradio3"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="input-group-modern">
+                    <button type="button" class="btn btn-primary btn-sm">Small button</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <div class="d-flex justify-content-center gap-5">
+        <button class="btn-prev" (click)="prevPage()">Previous</button>
+        <button class="btn-next" (click)="nextPage()">Next</button>
+    </div>
+
+</div>

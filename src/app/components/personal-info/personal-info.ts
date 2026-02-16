@@ -1,29 +1,18 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
-  EmailValidator,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { CountryService } from '../../services/country';
 import { CommonModule } from '@angular/common';
+import { ResumeService } from '../../services/resume.service';
 
 @Component({
   selector: 'app-personal-info',
   imports: [
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
     ReactiveFormsModule,
-    MatSelectModule,
     CommonModule,
   ],
   templateUrl: './personal-info.html',
@@ -34,7 +23,9 @@ export class PersonalInfo implements OnInit {
   countries: any[] = [];
   filteredCountries: any[] = [];
   states: any[] = [];
-  constructor(private countryService: CountryService) {}
+  @Output() setPageForParent = new EventEmitter<number>();
+  constructor(private countryService: CountryService, private resumeService: ResumeService) { }
+
   ngOnInit(): void {
     this.formGroup = new FormGroup({
       fullName: new FormControl('', [
@@ -48,7 +39,7 @@ export class PersonalInfo implements OnInit {
         Validators.pattern(/^\d{10}$/), // exactly 10 digits
       ]),
       city: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      state: new FormControl({ value: null, disabled: true }, [Validators.required]),
+      state: new FormControl('', [Validators.required]),
       country: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       linkedin: new FormControl('', [
         Validators.pattern(/^(https?:\/\/)?(www\.)?linkedin\.com\/.*$/),
@@ -85,5 +76,16 @@ export class PersonalInfo implements OnInit {
   filterCountries(event: any) {
     const value = event.target.value.toLowerCase();
     this.filteredCountries = this.countries.filter((c) => c.name.toLowerCase().includes(value));
+  }
+
+  nextPage() {
+    this.resumeService.gotoNextPage();
+    this.setPageForParent.emit(this.resumeService.getPage())
+  }
+
+  prevPage() {
+    this.resumeService.gotoPrevPage();
+    this.setPageForParent.emit(this.resumeService.getPage())
+
   }
 }

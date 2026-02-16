@@ -1,67 +1,27 @@
-.form-cotnainer {
-  // width: 100%;
-  width: 62%;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.input-container {
-  // height: 100%;
-  width: 80%;
-}
-
-.resume-cards-container {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  gap: 2rem; /* Use rem for spacing that scales with zoom */
-  min-height: 100vh; /* Allows container to grow beyond the screen if needed */
-  width: 100%;
-  flex-wrap: wrap; /* Essential for mobile and tablet responsiveness */
+.resume-page {
+  min-height: 100vh;
+  /* full screen height */
+  background: #0f1115;
   position: relative;
-  left: 20px;
 }
 
-.mat-center-container {
-  width: 100%;
-}
-
-.glass-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(1.25);
-  -webkit-backdrop-filter: blur(20px) saturate(1.25);
-
-  border-radius: 18px;
-  transition:
-    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.35s ease,
-    background 0.35s ease;
-}
-
-.glass-card::before {
-  content: '';
+/* Overlay */
+.overlay {
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
+  background: rgba(15, 17, 21, 0.6);
+  z-index: 10;
 }
 
-.glass-card:hover::before {
-  opacity: 1;
+.resume-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-.example-card {
-  width: 100%;
-  max-width: 500px; /* Limits width on large screens */
-  height: auto; /* Remove 750px to prevent fixed-box behavior */
-  min-height: fit-content;
-  overflow: visible; /* Helps eliminate the internal scrollbar */
-}
-
-.example-header-image {
-  background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+@media (max-width: 991px) {
+  .resume-page {
+    align-items: flex-start;
+    padding-top: 40px;
+  }
 }

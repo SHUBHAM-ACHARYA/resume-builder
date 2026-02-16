@@ -1,35 +1,59 @@
-<div class="mat-center-container">
-  <div class="resume-cards-container">
-    <!-- Loader overlay -->
-    <div class="overlay" *ngIf="isLoading">
-      <mat-spinner diameter="60" color="accent"></mat-spinner>
-    </div>
+<div class="resume-page">
+  <!-- <div class="container h-100"> -->
+  <div class="row h-100 justify-content-center align-items-center gx-5 gy-5">
 
-    <div class="form-cotnainer">
-      <!-- Page content -->
-      @if (pageCount === 0) {
-      <app-personal-info class="input-container"></app-personal-info>
-      } @else if (pageCount === 1) {
-      <!-- future component -->
-      <!-- <app-summary></app-summary> -->
+
+
+    <div class="row justify-content-center gx-5 gy-5">
+
+      <!-- Card 1 -->
+      @if(formCount===0){
+      <div class="col-12 col-lg-5">
+        <div class="overlay " *ngIf="isLoading">
+
+          <!-- Loading Overlay -->
+
+          <!-- <mat-spinner diameter="60" color="accent"></mat-spinner> -->
+          <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-success" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-danger" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-warning" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="spinner-grow text-dark" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div> <app-personal-info (setPageForParent)="getCurrentForm($event)"></app-personal-info>
+      </div>
+      } @else if(formCount===1){
+      <div class="col-12 col-lg-5">
+        <app-skills (setPageForParent)="getCurrentForm($event)"></app-skills>
+      </div>
       }
 
-      <!-- <div class="navigation-buttons">
-        <button
-          mat-raised-button
-          (click)="prevPage()"
-          [disabled]="pageCount === 0"
-          class="btn-prev"
-        >
-          <b>Previous</b>
-        </button>
+      <!-- Card 2 -->
+      <div class="col-12 col-lg-5">
+        resume preview placeholder
+        <!-- <app-personal-info (setPageForParent)="getCurrentForm($event)"></app-personal-info> -->
+      </div>
 
-        <button mat-raised-button (click)="nextPage()" class="btn-next">
-          <b>Next</b>
-        </button>
-      </div> -->
     </div>
-
-    <!-- Navigation buttons -->
+    <!-- </div> -->
   </div>
+
 </div>

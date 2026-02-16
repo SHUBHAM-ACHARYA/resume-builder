@@ -34,7 +34,7 @@ app-resume-builder {
 }
 
 ::ng-deep mat-form-field {
-//   width: 50%;
+  //   width: 50%;
 }
 
 ::ng-deep .ios-select-panel {
@@ -60,8 +60,118 @@ app-resume-builder {
     transform: translateY(10px) scale(0.98);
     opacity: 0;
   }
+
   to {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
+}
+
+
+
+
+
+
+
+//personal-info scss
+::ng-deep .resume-wrapper {
+  min-height: 100vh;
+  background: #0f1115;
+  font-family: 'Inter', sans-serif;
+}
+
+::ng-deep .resume-card {
+  width: 100%;
+  background: #161a22;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 40px;
+}
+
+::ng-deep .section-title {
+  color: #e6edf3;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+::ng-deep .input-group-modern {
+  position: relative;
+}
+
+::ng-deep .modern-input {
+  width: 100%;
+  padding: 18px 14px 8px 14px;
+  background: #1c212b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: #e6edf3;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+::ng-deep select.modern-input {
+  appearance: none;
+}
+
+::ng-deep .modern-input:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+::ng-deep .modern-input:focus {
+  border-color: #3b82f6;
+  background: #202633;
+}
+
+
+::ng-deep .input-group-modern label {
+  position: absolute;
+  left: 14px;
+  top: 16px;
+  font-size: 14px;
+  color: #7d8590;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+::ng-deep .modern-input:focus+label,
+::ng-deep .modern-input:not(:placeholder-shown)+label,
+::ng-deep .modern-input:not(:focus):valid+label {
+  top: 6px;
+  font-size: 11px;
+  color: #3b82f6;
+}
+
+::ng-deep textarea.modern-input {
+  resize: none;
+}
+
+::ng-deep .btn-next {
+  background: #6366f1; // modern indigo
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  width: 100px;
+  height: 50px;
+  font-size: large;
+  font-weight: bolder;
+}
+
+::ng-deep .btn-next:hover {
+  background: #554cf5;
+}
+
+::ng-deep .btn-prev {
+  background: #3f4757;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  width: 100px;
+  height: 50px;
+  font-size: large;
+  font-weight: bolder;
+}
+
+::ng-deep .btn-prev:hover {
+  background: rgba(255, 255, 255, 0.13);
 }
