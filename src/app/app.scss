@@ -1,0 +1,85 @@
+:host {
+    display: block;
+    min-height: 100%;
+    background-color: #f4f1ea;
+    color: #18231f;
+}
+
+.app-shell {
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 24px;
+    background: radial-gradient(circle at top right, #dce9df 0, transparent 32rem), #f4f1ea;
+}
+
+.form-panel {
+    width: min(100%, 900px);
+    margin: auto;
+    padding: clamp(28px, 5vw, 64px);
+    background: #fffdf9;
+    border: 1px solid #d9e0d8;
+    box-shadow: 0 20px 60px rgb(45 65 51 / 10%);
+}
+
+.page-header {
+    margin-bottom: 40px;
+}
+
+.eyebrow {
+    margin: 0 0 12px;
+    color: #3f7659;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: #18231f;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1;
+}
+
+.intro {
+    margin: 16px 0 0;
+    color: #607067;
+    font-size: 1.05rem;
+}
+
+.basic-information-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 20px;
+}
+
+.col-span-full {
+    grid-column: 1 / -1;
+}
+
+.form-label {
+    color: #34443a;
+    font-weight: 600;
+}
+
+.form-actions {
+    padding-top: 8px;
+}
+
+@media (max-width: 640px) {
+    .app-shell {
+        padding: 24px 16px;
+    }
+
+    .basic-information-form {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .col-span-full {
+        grid-column: auto;
+    }
+}

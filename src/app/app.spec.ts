@@ -15,10 +15,11 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render the basic information form', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, resume-builder');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Basic information');
+    expect(compiled.querySelector('form')).toBeTruthy();
   });
 });
