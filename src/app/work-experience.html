@@ -1,0 +1,65 @@
+<main class="step-shell">
+    <section class="form-panel" aria-labelledby="page-title">
+        <header class="page-header">
+            <p class="eyebrow">Step 3 of 7</p>
+            <h1 id="page-title">Work experience</h1>
+            <p class="intro">Show the work that makes your experience credible.</p>
+        </header>
+        <form class="experience-form" [formGroup]="experienceForm" (ngSubmit)="saveExperience()">
+            <div>
+                <label class="form-label" for="company">Company</label>
+                <input id="company" class="form-control" placeholder="Acme Inc." formControlName="company" required>
+            </div>
+            <div>
+                <label class="form-label" for="jobTitle">Job title</label>
+                <input id="jobTitle" class="form-control" placeholder="Frontend Developer" formControlName="jobTitle" required>
+            </div>
+            <div>
+                <label class="form-label" for="employmentType">Employment type</label>
+                <select id="employmentType" class="form-select" formControlName="employmentType" required>
+                    <option value="">Select type</option>
+                    <option>Full-time</option>
+                    <option>Part-time</option>
+                    <option>Contract</option>
+                    <option>Freelance</option>
+                    <option>Internship</option>
+                </select>
+            </div>
+            <div>
+                <label class="form-label" for="location">Location</label>
+                <input id="location" class="form-control" placeholder="Bengaluru or Remote" formControlName="location" required>
+            </div>
+            <div>
+                <label class="form-label" for="startDate">Start date</label>
+                <input id="startDate" class="form-control" type="month" formControlName="startDate" required>
+            </div>
+            <div>
+                <label class="form-label" for="endDate">End date</label>
+                <input id="endDate" class="form-control" type="month" formControlName="endDate">
+            </div>
+            <div class="col-span-full form-check">
+                <input id="currentlyWorking" class="form-check-input" type="checkbox" formControlName="currentlyWorking">
+                <label class="form-check-label" for="currentlyWorking">I currently work here</label>
+            </div>
+            <div class="col-span-full">
+                <label class="form-label" for="technologies">Technologies used</label>
+                <input id="technologies" class="form-control" placeholder="Angular, TypeScript, Node.js" formControlName="technologies" required>
+                <div class="form-hint">Separate items with commas.</div>
+            </div>
+            <div class="col-span-full">
+                <label class="form-label" for="responsibilities">Responsibilities</label>
+                <textarea id="responsibilities" class="form-control" rows="4" placeholder="Built and maintained customer-facing features" formControlName="responsibilities" required></textarea>
+                <div class="form-hint">Separate responsibilities with commas.</div>
+            </div>
+            <div class="col-span-full">
+                <label class="form-label" for="achievements">Key achievements</label>
+                <textarea id="achievements" class="form-control" rows="4" placeholder="Improved page load time by 35%" formControlName="achievements"></textarea>
+                <div class="form-hint">Optional. Separate achievements with commas.</div>
+            </div>
+            <div class="col-span-full experience-actions">
+                <button class="btn btn-outline-secondary" type="button" (click)="goToProfessionalSummary()">Back to summary</button>
+                <button class="btn btn-primary" type="submit">Add another experience</button>
+            </div>
+        </form>
+    </section>
+</main>

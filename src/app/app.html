@@ -1,22 +1,52 @@
+@if (!isStepPage()) {
 <main class="app-shell">
+    <aside class="ad-slot" aria-label="Advertisement placeholder">
+        <span>Advertisement</span>
+    </aside>
     <section class="form-panel" aria-labelledby="page-title">
         <header class="page-header">
             <p class="eyebrow">Resume builder</p>
             <h1 id="page-title">Basic information</h1>
             <p class="intro">Start with the details employers should see first.</p>
         </header>
-        <form class="basic-information-form" [formGroup]="firstFormGroup">
+        <form class="basic-information-form" [formGroup]="firstFormGroup" (ngSubmit)="saveBasicInformation()">
             <div class="col-span-full">
                 <label class="form-label" for="fullName">Full name</label>
-                <input id="fullName" class="form-control" placeholder="Jane Doe" formControlName="fullName" required>
+                <input id="fullName" class="form-control" [class.is-invalid]="firstFormGroup.controls.fullName.invalid && firstFormGroup.controls.fullName.touched" placeholder="Jane Doe" formControlName="fullName" required>
+                @if (firstFormGroup.controls.fullName.hasError('required') && firstFormGroup.controls.fullName.touched) {
+                <div class="invalid-feedback">Full name is required.</div>
+                }
             </div>
             <div class="col-span-full">
                 <label class="form-label" for="jobTitle">Job title / target role</label>
-                <input id="jobTitle" class="form-control" placeholder="Software Engineer" formControlName="jobTitle" required>
+                <div class="job-title-picker">
+                    <input id="jobTitle" class="form-control" [class.is-invalid]="firstFormGroup.controls.jobTitle.invalid && firstFormGroup.controls.jobTitle.touched" role="combobox" aria-autocomplete="list" [attr.aria-expanded]="showJobTitleOptions" autocomplete="off" placeholder="Search or type a job title" formControlName="jobTitle" required (focus)="onJobTitleInput()" (input)="onJobTitleInput()" (blur)="hideJobTitleOptions()">
+                    @if (showJobTitleOptions) {
+                    <div class="job-title-menu" role="listbox">
+                        @for (title of filteredJobTitles; track title) {
+                        <button class="job-title-option" type="button" role="option" (mousedown)="$event.preventDefault()" (click)="selectJobTitle(title)">{{ title }}</button>
+                        }
+                        @if (firstFormGroup.controls.jobTitle.value?.trim() && !jobTitleOptions.some(title => title.toLowerCase() === firstFormGroup.controls.jobTitle.value?.trim()?.toLowerCase())) {
+                        <button class="job-title-option add-option" type="button" (mousedown)="$event.preventDefault()" (click)="addManualJobTitle()">Add &quot;{{ firstFormGroup.controls.jobTitle.value?.trim() }}&quot;</button>
+                        }
+                        @if (!filteredJobTitles.length && !firstFormGroup.controls.jobTitle.value?.trim()) {
+                        <span class="job-title-empty">Start typing to see suggestions.</span>
+                        }
+                    </div>
+                    }
+                </div>
+                @if (firstFormGroup.controls.jobTitle.hasError('required') && firstFormGroup.controls.jobTitle.touched) {
+                <div class="invalid-feedback d-block">Job title or target role is required.</div>
+                }
             </div>
             <div>
                 <label class="form-label" for="email">Email</label>
-                <input id="email" class="form-control" type="email" placeholder="jane@example.com" formControlName="email" required>
+                <input id="email" class="form-control" [class.is-invalid]="firstFormGroup.controls.email.invalid && firstFormGroup.controls.email.touched" type="email" placeholder="jane@example.com" formControlName="email" required>
+                @if (firstFormGroup.controls.email.hasError('required') && firstFormGroup.controls.email.touched) {
+                <div class="invalid-feedback">Email is required.</div>
+                } @else if (firstFormGroup.controls.email.hasError('email') && firstFormGroup.controls.email.touched) {
+                <div class="invalid-feedback">Enter a valid email address.</div>
+                }
             </div>
             <div>
                 <label class="form-label" for="phone">Phone</label>
@@ -24,19 +54,31 @@
             </div>
             <div>
                 <label class="form-label" for="location">Location</label>
-                <input id="location" class="form-control" placeholder="New York, NY" formControlName="location" required>
+                <input id="location" class="form-control" [class.is-invalid]="firstFormGroup.controls.location.invalid && firstFormGroup.controls.location.touched" placeholder="Bengaluru, Karnataka" formControlName="location" required>
+                @if (firstFormGroup.controls.location.hasError('required') && firstFormGroup.controls.location.touched) {
+                <div class="invalid-feedback">Location is required.</div>
+                }
             </div>
             <div>
                 <label class="form-label" for="linkedIn">LinkedIn</label>
-                <input id="linkedIn" class="form-control" type="url" placeholder="https://linkedin.com/in/janedoe" formControlName="linkedIn">
+                <input id="linkedIn" class="form-control" [class.is-invalid]="firstFormGroup.controls.linkedIn.invalid && firstFormGroup.controls.linkedIn.touched" type="url" placeholder="https://linkedin.com/in/janedoe" formControlName="linkedIn">
+                @if (firstFormGroup.controls.linkedIn.hasError('pattern') && firstFormGroup.controls.linkedIn.touched) {
+                <div class="invalid-feedback">Enter a valid LinkedIn URL.</div>
+                }
             </div>
             <div>
                 <label class="form-label" for="gitHub">GitHub</label>
-                <input id="gitHub" class="form-control" type="url" placeholder="https://github.com/janedoe" formControlName="gitHub">
+                <input id="gitHub" class="form-control" [class.is-invalid]="firstFormGroup.controls.gitHub.invalid && firstFormGroup.controls.gitHub.touched" type="url" placeholder="https://github.com/janedoe" formControlName="gitHub">
+                @if (firstFormGroup.controls.gitHub.hasError('pattern') && firstFormGroup.controls.gitHub.touched) {
+                <div class="invalid-feedback">Enter a valid GitHub URL.</div>
+                }
             </div>
             <div class="col-span-full">
                 <label class="form-label" for="portfolio">Portfolio / website</label>
-                <input id="portfolio" class="form-control" type="url" placeholder="https://janedoe.dev" formControlName="portfolio">
+                <input id="portfolio" class="form-control" [class.is-invalid]="firstFormGroup.controls.portfolio.invalid && firstFormGroup.controls.portfolio.touched" type="url" placeholder="https://janedoe.dev" formControlName="portfolio">
+                @if (firstFormGroup.controls.portfolio.hasError('pattern') && firstFormGroup.controls.portfolio.touched) {
+                <div class="invalid-feedback">Enter a valid website URL.</div>
+                }
             </div>
             <div class="col-span-full">
                 <label class="form-label" for="profilePhoto">Profile photo <span class="text-body-secondary">(optional)</span></label>
@@ -47,5 +89,9 @@
             </div>
         </form>
     </section>
+    <aside class="ad-slot" aria-label="Advertisement placeholder">
+        <span>Advertisement</span>
+    </aside>
 </main>
+}
 <router-outlet />

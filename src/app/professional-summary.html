@@ -1,0 +1,53 @@
+<main class="app-shell">
+    <aside class="ad-slot" aria-label="Advertisement placeholder">
+        <span>Advertisement</span>
+    </aside>
+    <section class="form-panel" aria-labelledby="page-title">
+        <header class="page-header">
+            <p class="eyebrow">Step 2 of 7</p>
+            <h1 id="page-title">Professional summary</h1>
+            <p class="intro">Give us a few signals and we will shape them into a strong opening.</p>
+        </header>
+        <form class="summary-form" [formGroup]="summaryForm" (ngSubmit)="generateProfessionalSummary()">
+            <div>
+                <label class="form-label" for="yearsOfExperience">Years of experience</label>
+                <input id="yearsOfExperience" class="form-control" type="number" min="0" placeholder="6" formControlName="yearsOfExperience" required>
+            </div>
+            <div>
+                <label class="form-label" for="primaryRole">Primary role</label>
+                <input id="primaryRole" class="form-control" placeholder="Frontend Developer" formControlName="primaryRole" required>
+            </div>
+            <div class="col-span-full">
+                <label class="form-label" for="mainTechnologies">Main technologies</label>
+                <input id="mainTechnologies" class="form-control" placeholder="Angular, React, TypeScript, Node.js" formControlName="mainTechnologies" required>
+                <div class="form-hint">Separate technologies with commas.</div>
+            </div>
+            <div class="col-span-full">
+                <label class="form-label" for="industry">Industry or domain</label>
+                <input id="industry" class="form-control" placeholder="Fintech and digital payments" formControlName="industry" required>
+            </div>
+            <div class="col-span-full">
+                <label class="form-label" for="keyStrengths">Key strengths</label>
+                <input id="keyStrengths" class="form-control" placeholder="System design, mentoring, accessibility" formControlName="keyStrengths" required>
+                <div class="form-hint">Separate strengths with commas.</div>
+            </div>
+            <div class="col-span-full form-actions">
+                <button class="btn btn-primary" type="submit">Generate professional summary</button>
+            </div>
+        </form>
+        @if (generatedSummary) {
+        <section class="summary-preview" aria-labelledby="summary-preview-title">
+            <p class="eyebrow">Draft ready</p>
+            <h2 id="summary-preview-title">Your professional summary</h2>
+            <p>{{ generatedSummary }}</p>
+        </section>
+        <div class="summary-actions">
+            <button class="btn btn-outline-secondary" type="button" (click)="goToBasicInformation()">Edit basic information</button>
+            <button class="btn btn-primary" type="button" (click)="saveAndContinue()">Save professional summary</button>
+        </div>
+        }
+    </section>
+    <aside class="ad-slot" aria-label="Advertisement placeholder">
+        <span>Advertisement</span>
+    </aside>
+</main>
